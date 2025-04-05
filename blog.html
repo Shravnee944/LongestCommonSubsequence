@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving the LFCS Problem</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f2; /* Light pink background */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #800080; /* Bright purple heading */
+            text-align: center;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #4b2c40; /* Plum color for subheadings */
+            font-size: 1.8em;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+        ul {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        a {
+            color: #ff80bf; /* Pink link color */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #e60073; /* Dark pink link hover */
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Solving the LFCS Problem</h1>
+    <p>The <strong>Longest Filled Common Subsequence (LFCS)</strong> problem is a computational challenge inspired by genome reconstruction. It extends the classic <strong>Longest Common Subsequence (LCS)</strong> problem to handle incomplete sequences. LFCS is particularly useful in <em>bioinformatics, scheduling, and data analysis</em>, where missing data is common.</p>
+
+    <h2>Overview of the LFCS Problem</h2>
+    <p>The LFCS problem involves:</p>
+    <ul>
+        <li><strong>Complete Sequence (C):</strong> The reference sequence.</li>
+        <li><strong>Incomplete Sequence (I):</strong> A sequence with missing elements.</li>
+        <li><strong>Missing Symbols (M):</strong> A multiset of elements that can fill the gaps in <em>I</em>.</li>
+    </ul>
+    <p>The goal is to fill the incomplete sequence <em>I</em> using symbols from <em>M</em> to maximize its alignment with the complete sequence <em>C</em>.</p>
+
+    <h2>Problem Demonstration</h2>
+    <p>Consider the following example:</p>
+    <ul>
+        <li>Sequence <strong>C = "ABCDE"</strong></li>
+        <li>Incomplete sequence <strong>I = "A_C_E"</strong></li>
+        <li>Missing symbols in <strong>M = {B, D}</strong></li>
+    </ul>
+    <p>By optimally filling the missing symbols, the incomplete sequence becomes "<strong>ABCDE</strong>", which matches perfectly with the complete sequence.</p>
+
+    <h2>Step-by-Step Code Explanation</h2>
+    <pre>
+// Java program to compute and reconstruct the Longest Common Subsequence (LCS)
+public class LongestCommonSubsequence {
+    public static int findLCSLength(String s1, String s2) {
+        int m = s1.length();
+        int n = s2.length();
+        int[][] dp = new int[m + 1][n + 1];
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+}
+    </pre>
+
+    <h2>Simulation Results</h2>
+    <p>After running the code, the output shows:</p>
+    <ul>
+        <li>The filled sequence <strong>I* = "ABCDE"</strong></li>
+        <li>The length of the LCS = <strong>5</strong></li>
+    </ul>
+    <p>The results confirm that the LFCS algorithm successfully reconstructs the incomplete sequence to achieve maximum alignment.</p>
+
+    <h2>Dynamic Programming Table Construction</h2>
+    <p>The DP table represents the length of the LCS for substrings <em>s1</em> and <em>s2</em>. See the GitHub repository for details.</p>
+
+    <h2>Code Link</h2>
+    <p>Visit my GitHub repository for the <em>Java implementation of the Longest Common Subsequence algorithm</em>:</p>
+    <a href="https://github.com/Shravnee944/LongestCommonSubsequence" target="_blank">GitHub Repository</a>
+
+    <footer>
+        <p>Blog written by Shravani. © 2025</p>
+    </footer>
+</body>
+</html>
