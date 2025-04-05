@@ -14,3 +14,6 @@ Instructions to Run
 Example Input/Output
 Input Strings: "AGGTAB", "GXTXAYB"
 Output: LCS = "GTAB", Length = 4
+
+References:
+- M. Castelli, R. Dondi, G. Mauri, I. Zoppis, "Comparing incomplete sequences via longest common subsequence," Theoretical Computer Science, Elsevier, 2019.
